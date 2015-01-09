@@ -1,0 +1,7 @@
+db:
+  image: hajaalin/pg-omero_5.0.6
+  environment:
+    POSTGRES_PASSWORD:
+    DB_PASSWORD_OMERO:
+  volumes:
+   - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
