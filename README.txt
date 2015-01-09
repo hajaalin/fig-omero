@@ -11,6 +11,7 @@ Configuration:
 - copy database dump to directory mapped in fig.yml
 
 Launch:
+source make_env.sh
 fig up
 
 
