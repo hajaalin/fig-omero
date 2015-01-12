@@ -11,3 +11,9 @@ export POSTGRES_PASSWORD=$secret
 secret=`ejson decrypt $SECRETS |jq '.db_password_omero'`
 secret=`echo $secret|sed 's/"//g'`
 export DB_PASSWORD_OMERO=$secret
+
+# OMERO_TRUSTSTORE_PASSWORD is used by OMERO server to access a Keystore file
+# that is used to store the LDAP server certificate chain.
+secret=`ejson decrypt $SECRETS |jq '.omero_truststore_password'`
+secret=`echo $secret|sed 's/"//g'`
+export OMERO_TRUSTSTORE_PASSWORD=$secret

@@ -5,3 +5,12 @@ db:
     DB_PASSWORD_OMERO:
   volumes:
    - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
+
+omero:
+  image: hajaalin/omero
+  environment:
+    DB_PASSWORD_OMERO:
+    OMERO_TRUSTSTORE_PASSWORD:
+  links:
+   - db
+
