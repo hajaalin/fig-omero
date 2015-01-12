@@ -31,7 +31,7 @@ USER omero
 
 ENTRYPOINT ["icegridnode", \
 "--nochdir", \
-"--Ice.Config=$OMERO_HOME/etc/internal.cfg,$OMERO_HOME/etc/master.cfg", \
-"--deploy $OMERO_HOME/etc/grid/default.xml"]
+"--Ice.Config=/opt/omero/etc/internal.cfg,/opt/omero/etc/master.cfg", \
+"--deploy /opt/omero/etc/grid/default.xml"]
 
 
