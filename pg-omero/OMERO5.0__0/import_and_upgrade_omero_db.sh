@@ -41,7 +41,10 @@ if [ ! -e $flag ]; then
 	for sql in $sqls
 	do
 		echo "upgrade script:" $sql
-		gosu postgres psql omero < $sql
+		echo $DB_PASSWORD_OMERO >> tmp.sql
+		cat $sql >> tmp.sql
+		gosu postgres psql -U omero omero < tmp.sql
+		rm tmp.sql
 	done
 	echo "**UPGRADE DONE***"
 	echo
