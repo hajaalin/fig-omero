@@ -23,6 +23,8 @@ if [ ! -e $flag ]; then
 	echo "**DATABASE BACKUP IMPORTED***"
 	kill $PID
 	sleep 10
+
+	echo "host omero omero 0.0.0.0/0 md5" >> "$PGDATA"/pg_hba.conf
 	touch $flag
 fi
 

@@ -1,5 +1,5 @@
 db:
-  image: hajaalin/pg-omero_5.0.6
+  image: hajaalin/pg-omero
   environment:
     POSTGRES_PASSWORD:
     DB_PASSWORD_OMERO:
