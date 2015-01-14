@@ -20,4 +20,14 @@ omeroweb:
   image: hajaalin/omeroweb
   links:
    - omero
+  expose:
+   - "4080"
 
+nginx:
+  image: hajaalin/omero-nginx
+  links:
+   - omeroweb
+  volumes_from:
+   - omeroweb
+  ports:
+   - "8080:8080"
