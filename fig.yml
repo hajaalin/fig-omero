@@ -13,4 +13,11 @@ omero:
     OMERO_TRUSTSTORE_PASSWORD:
   links:
    - db
+  expose: 
+   - "4064"
+
+omeroweb:
+  image: hajaalin/omeroweb
+  links:
+   - omero
 
