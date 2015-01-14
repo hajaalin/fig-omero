@@ -17,3 +17,9 @@ export DB_PASSWORD_OMERO=$secret
 secret=`ejson decrypt $SECRETS |jq '.omero_truststore_password'`
 secret=`echo $secret|sed 's/"//g'`
 export OMERO_TRUSTSTORE_PASSWORD=$secret
+
+# OMERO_ROOT_PASSWORD is password for 'root' to login to OMERO server.
+secret=`ejson decrypt $SECRETS |jq '.omero_root_password'`
+secret=`echo $secret|sed 's/"//g'`
+export OMERO_ROOT_PASSWORD=$secret
+

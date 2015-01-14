@@ -1,8 +1,9 @@
 db:
-  image: hajaalin/pg-omero
+  image: hajaalin/omero-postgres
   environment:
     POSTGRES_PASSWORD:
     DB_PASSWORD_OMERO:
+    OMERO_ROOT_PASSWORD:
   volumes:
    - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
 

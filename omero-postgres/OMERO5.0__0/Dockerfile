@@ -1,5 +1,7 @@
 FROM postgres:9.3
 
+RUN apt-get install -y openssl
+
 VOLUME /pg_dump
 
 ADD import_and_upgrade_omero_db.sh /docker-entrypoint-initdb.d/

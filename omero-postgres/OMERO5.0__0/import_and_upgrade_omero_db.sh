@@ -58,3 +58,22 @@ if [ ! -e $flag ]; then
 	touch $flag
 fi
 
+flag="/pg_omero_root_password_set"
+if [ ! -e $flag ]; then
+        echo "**SETTING OMERO ROOT PASSWORD**"
+        gosu postgres postgres &
+        PID=$!
+        echo PID $PID
+        sleep 2
+
+	PASS=`echo -n "$OMERO_ROOT_PASSWORD" |openssl md5 -binary | openssl base64`
+        gosu postgres psql -U omero omero -c \
+		"update password set hash = '$PASS' where experimenter_id = 0" <<-EOF
+$DB_PASSWORD_OMERO
+EOF
+        echo "**OMERO ROOT PASSWORD SET***"
+        kill $PID
+        sleep 10
+        touch $flag
+fi
+
