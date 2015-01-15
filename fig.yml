@@ -8,7 +8,7 @@ db:
    - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
 
 omero:
-  image: hajaalin/omero
+  image: hajaalin/omero-hyldap
   environment:
     DB_PASSWORD_OMERO:
     OMERO_TRUSTSTORE_PASSWORD:

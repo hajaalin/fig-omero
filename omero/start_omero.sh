@@ -1,5 +1,10 @@
 #!/bin/bash
-. /set_config.sh
+
+# source all parameter files
+for f in /set_config*
+do
+    . $f
+done
 
 # loop to test db connection before starting OMERO server
 i="0"
