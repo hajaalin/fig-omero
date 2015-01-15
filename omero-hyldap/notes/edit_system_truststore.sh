@@ -1,17 +1,8 @@
-# Create  truststore if it doesn't exist
-if [ ! -e $OMERO_TRUSTSTORE ]; then
-keytool -genkey -alias omero -keyalg RSA -keystore $OMERO_TRUSTSTORE <<-EOF
+# change default keystore password
+keytool -storepasswd -keystore $OMERO_TRUSTSTORE<<-EOF
+changeit
 $OMERO_TRUSTSTORE_PASSWORD
 $OMERO_TRUSTSTORE_PASSWORD
-omero
-BIU and LMU
-University of Helsinki
-Helsinki
-
-FI
-yes
-
-
 EOF
 
 
@@ -46,5 +37,5 @@ EOF
 
 rm *.pem
 
-fi
+
 

@@ -12,6 +12,8 @@ omero:
   environment:
     DB_PASSWORD_OMERO:
     OMERO_TRUSTSTORE_PASSWORD:
+    LDAP_HOST: "ldap-internal.it.helsinki.fi"
+    LDAP_PORT: "636"
   links:
    - db
   expose: 

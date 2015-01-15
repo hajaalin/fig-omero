@@ -1,0 +1,1 @@
+openssl s_client -connect $LDAP_HOST:$LDAP_PORT -prexit < /dev/null | openssl x509 -outform PEM | keytool -import  -alias ldap -keystore $OMERO_TRUSTSTORE -storepass $OMERO_TRUSTSTORE_PASSWORD -noprompt

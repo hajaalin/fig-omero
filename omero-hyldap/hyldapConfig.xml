@@ -1,0 +1,9 @@
+<hyldapconfig>
+    <group ldapname="uid=grp-A34500-cholesterol,ou=alma_workgroups,ou=groups,o=hy" omename="Cholesterol"/>
+    <group ldapname="uid=grp-A91900-lmu,ou=alma_workgroups,ou=groups,o=hy" omename="LMU"/>
+    <group ldapname="uid=grp-A91900-bi-lappal,ou=alma_workgroups,ou=groups,o=hy" omename="BI-Lappalainen"/>
+    <group ldapname="uid=grp-A91900-bi-vart,ou=alma_workgroups,ou=groups,o=hy" omename="BI-Vartiainen"/>
+    <group ldapname="uid=grp-A34520-biu,ou=alma_workgroups,ou=groups,o=hy" omename="BIU"/>
+    <group ldapname="uid=grp-A91900-bi-em,ou=alma_workgroups,ou=groups,o=hy" omename="BI-EM"/>
+</hyldapconfig >
+
