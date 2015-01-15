@@ -8,10 +8,8 @@ ENV OMERO_TRUSTSTORE /home/omero/truststore.jks
 
 ADD set_config_hyldap.sh /set_config_hyldap.sh
 ADD create_truststore.sh /create_truststore.sh
-ADD edit_system_truststore.sh /edit_system_truststore.sh
 ADD hyldapConfig.xml /home/omero/hyldapConfig.xml
 ADD hyldap.jar /opt/omero/lib/server/extensions.jar
-ADD SSLPoke.java /SSLPoke.java
 
 RUN chown omero:omero /*.sh 
 
