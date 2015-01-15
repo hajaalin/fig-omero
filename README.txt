@@ -16,9 +16,14 @@ fig up
 
 
 TODO:
-- Dockerfile for OMERO
-- Dockerfile for OMERO.web
+- use data-only containers
 - database replication
+- testing
+- understanding OMERO.FS:n
+
+TODO DEPLOYMENT
+- new VM from CSC, Ubuntu 14
+- mounting current data on new VM
 
 
 
