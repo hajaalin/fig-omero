@@ -16,10 +16,8 @@ RUN chown omero:omero /*.sh
 USER omero
 RUN omero config set omero.security.trustStore $OMERO_TRUSTSTORE \
 && omero config set omero.ldap.config true \
-&& omero config set omero.ldap.urls ldaps://ldap-internal.it.helsinki.fi:636 \
 && omero config set omero.ldap.base dc=helsinki,dc=fi \
 && omero config set omero.ldap.user_mapping 'omeName=uid,firstName=givenName,lastName=sn,email=uid' \
 && omero config set omero.ldap.new_user_group ':bean:hyldapbean' \
 && omero config set omero.ldap.sync_on_login false \
 && echo "hyldap.config=/home/omero/hyldapConfig.xml" >> /opt/omero/etc/omero.properties
-
