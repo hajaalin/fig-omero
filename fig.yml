@@ -1,5 +1,5 @@
 db:
-  image: hajaalin/omero-postgres
+  build: omero-postgres/OMERO5.0__0
   environment:
     POSTGRES_PASSWORD:
     DB_PASSWORD_OMERO:
@@ -8,7 +8,7 @@ db:
    - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
 
 omero:
-  image: hajaalin/omero-hyldap
+  build: omero-hyldap
   environment:
     DB_PASSWORD_OMERO:
     OMERO_TRUSTSTORE_PASSWORD:
@@ -20,14 +20,14 @@ omero:
    - "4064"
 
 omeroweb:
-  image: hajaalin/omeroweb
+  build: omero-web
   links:
    - omero
   expose:
    - "4080"
 
 nginx:
-  image: hajaalin/omero-nginx
+  build: omero-nginx
   links:
    - omeroweb
   volumes_from:
