@@ -20,6 +20,9 @@ omero:
    - "4064"
   volumes:
    - /home/omero/data/OMERO:/data/OMERO
+  ports:
+   - "4063:4063"
+   - "4064:4064"
 
 omeroweb:
   build: omero-web
@@ -35,7 +38,7 @@ nginx:
   volumes_from:
    - omeroweb
   volumes:
-   - /home/hajaalin/tmp/fig-omero-test1/nginx_auth:/etc/nginx/auth
+   - /opt/GitHub/fig-omero-test1/nginx_auth:/etc/nginx/auth
   ports:
    - "8080:80"
    - "443:443"
