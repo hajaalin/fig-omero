@@ -32,5 +32,8 @@ nginx:
    - omeroweb
   volumes_from:
    - omeroweb
+  volumes:
+   - /home/hajaalin/tmp/fig-omero-test1/nginx_auth:/etc/nginx/auth
   ports:
-   - "8080:8080"
+   - "8080:80"
+   - "443:443"
