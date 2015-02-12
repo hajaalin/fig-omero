@@ -5,7 +5,7 @@ db:
     DB_PASSWORD_OMERO:
     OMERO_ROOT_PASSWORD:
   volumes:
-   - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
+   - /home/omero/data/pg_dump:/pg_dump:ro
 
 omero:
   build: omero-hyldap
@@ -18,6 +18,8 @@ omero:
    - db
   expose: 
    - "4064"
+  volumes:
+   - /home/omero/data/OMERO:/data/OMERO
 
 omeroweb:
   build: omero-web
