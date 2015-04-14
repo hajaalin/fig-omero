@@ -1,6 +1,6 @@
 FROM hajaalin/omero-base
 
-ENV BRANCH OMERO-5.0-latest
+ENV BRANCH OMERO-5.1-latest
 
 RUN cd /tmp \
 && /home/omero/venv/bin/omego download server --branch=$BRANCH --labels ICE=3.5

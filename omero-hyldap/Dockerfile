@@ -1,4 +1,4 @@
-FROM hajaalin/omero
+FROM hajaalin/omero:5.1
 
 USER root
 
