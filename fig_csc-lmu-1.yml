@@ -1,0 +1,44 @@
+db:
+  build: omero-postgres/OMERO5.0__0
+  environment:
+    POSTGRES_PASSWORD:
+    DB_PASSWORD_OMERO:
+    OMERO_ROOT_PASSWORD:
+  volumes:
+   - /home/omero/data/pg_dump:/pg_dump:rw
+
+omero:
+  build: omero-hyldap
+  environment:
+    DB_PASSWORD_OMERO:
+    OMERO_TRUSTSTORE_PASSWORD:
+    LDAP_HOST: "ldap-internal.it.helsinki.fi"
+    LDAP_PORT: "636"
+  links:
+   - db
+  expose: 
+   - "4064"
+  volumes:
+   - /home/omero/data/OMERO:/data/OMERO
+  ports:
+   - "4063:4063"
+   - "4064:4064"
+
+omeroweb:
+  build: omero-web
+  links:
+   - omero
+  expose:
+   - "4080"
+
+nginx:
+  build: omero-nginx
+  links:
+   - omeroweb
+  volumes_from:
+   - omeroweb
+  volumes:
+   - /opt/GitHub/fig-omero-test1/nginx_auth:/etc/nginx/auth
+  ports:
+   - "8080:80"
+   - "8443:443"
