@@ -5,7 +5,7 @@ db:
     DB_PASSWORD_OMERO:
     OMERO_ROOT_PASSWORD:
   volumes:
-   - /home/omero/data/pg_dump:/pg_dump:ro
+   - /home/omero/data/pg_dump:/pg_dump:rw
 
 omero:
   build: omero-hyldap
@@ -41,4 +41,4 @@ nginx:
    - /opt/GitHub/fig-omero-test1/nginx_auth:/etc/nginx/auth
   ports:
    - "8080:80"
-   - "443:443"
+   - "8443:443"
