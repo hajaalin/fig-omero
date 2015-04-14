@@ -32,7 +32,7 @@ stop() {
 #return 1
 #fi
 echo 'Stopping service…' >&2
-local CMD="$START &> \"$LOGFILE\""
+local CMD="$STOP &>> \"$LOGFILE\""
 su -c "$CMD" $RUNAS
 #kill -15 $(cat "$PIDFILE") && rm -f "$PIDFILE"
 echo 'Service stopped' >&2
@@ -61,7 +61,7 @@ stop
 uninstall)
 uninstall
 ;;
-retart)
+restart)
 stop
 start
 ;;
