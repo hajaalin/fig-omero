@@ -15,6 +15,7 @@ if [ ! -e $flag ]; then
 	# Thanks to 'mhubig':
 	# https://github.com/docker-library/postgres/issues/16
 	echo "**IMPORTING DATABASE BACKUP**"
+	echo $dump
 	gosu postgres postgres &
 	PID=$!
 	echo PID $PID
@@ -49,10 +50,10 @@ if [ ! -e $flag ]; then
 	echo "**UPGRADE DONE***"
 	echo
 
-	#echo "**OPTIMIZING DATABASE***"
-	#gosu postgres psql -U omero omero -c 'REINDEX DATABASE "omero_database" FORCE;'
-	#gosu postgres psql -U omero omero -c 'VACUUM FULL VERBOSE ANALYZE;'
-	#echo "**OPTIMIZATION DONE***"
+	echo "**OPTIMIZING DATABASE***"
+	gosu postgres psql -U omero omero -c 'REINDEX DATABASE "omero_database" FORCE;'
+	gosu postgres psql -U omero omero -c 'VACUUM FULL VERBOSE ANALYZE;'
+	echo "**OPTIMIZATION DONE***"
 	kill $PID
 	sleep 10
 	touch $flag
