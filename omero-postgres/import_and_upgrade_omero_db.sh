@@ -51,7 +51,7 @@ if [ ! -e $flag ]; then
 	echo
 
 	echo "**OPTIMIZING DATABASE***"
-	gosu postgres psql -U omero omero -c 'REINDEX DATABASE "omero_database" FORCE;'
+	gosu postgres psql -U omero omero -c 'REINDEX DATABASE "omero" FORCE;'
 	gosu postgres psql -U omero omero -c 'VACUUM FULL VERBOSE ANALYZE;'
 	echo "**OPTIMIZATION DONE***"
 	kill $PID
