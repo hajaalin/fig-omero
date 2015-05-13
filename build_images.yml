@@ -1,0 +1,42 @@
+---
+# Playbook to build Docker images for this project.
+
+- hosts: localhost
+  sudo: no
+
+  vars:
+    docker_owner: "testing"
+    omero_components:
+      - omero-base
+      - omero
+#      - omero-hyldap
+#      - omero-web
+#      - omero-nginx
+#      - omero-postgres
+      
+  tasks:
+  - name: read the current Git branch
+    shell: git branch -v|grep "\*"|awk '{print $2}'
+    register: git_branch
+
+  - name: read the current Git commit
+    shell: git log |head -1|awk '{print $2}'
+    register: git_commit
+
+  - set_fact: docker_tag="{{ git_branch.stdout }}-{{ git_commit.stdout }}"
+  - debug: var=docker_tag
+
+  - name: template Dockerfiles
+    template: 
+      src="{{ item }}/Dockerfile.tmpl"
+      dest="{{ item }}/Dockerfile"
+    with_items: "{{ omero_components }}"
+
+  - name: build images
+    docker_image: 
+      path="./{{ item }}" 
+      name="{{ docker_owner }}/{{ item }}" 
+      tag="{{ docker_tag }}"
+      state=build
+    with_items: "{{ omero_components }}"
+
