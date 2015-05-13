@@ -1,5 +1,5 @@
 db:
-  build: omero-postgres/OMERO5.0__0
+  build: omero-postgres
   environment:
     POSTGRES_PASSWORD:
     DB_PASSWORD_OMERO:
