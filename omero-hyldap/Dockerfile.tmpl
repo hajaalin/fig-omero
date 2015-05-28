@@ -9,7 +9,7 @@ ENV OMERO_TRUSTSTORE /home/omero/truststore.jks
 ADD set_config_hyldap.sh /set_config_hyldap.sh
 ADD create_truststore.sh /create_truststore.sh
 ADD hyldapConfig.xml /home/omero/hyldapConfig.xml
-ADD hyldap.jar /opt/omero/lib/server/extensions.jar
+ADD hyldap-5.1.1-328-f978880-ice35-b0.jar /opt/omero/lib/server/extensions.jar
 
 RUN chown omero:omero /*.sh 
 

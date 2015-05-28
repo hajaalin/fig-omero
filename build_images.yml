@@ -9,10 +9,10 @@
     omero_components:
       - omero-base
       - omero
-#      - omero-hyldap
-#      - omero-web
-#      - omero-nginx
-#      - omero-postgres
+      - omero-hyldap
+      - omero-web
+      - omero-nginx
+      - omero-postgres
       
   tasks:
   - name: read the current Git branch
