@@ -9,6 +9,7 @@
     omero_components:
       - omero-base
       - omero
+      - omero-initdb
       - omero-hyldap
       - omero-web
       - omero-nginx

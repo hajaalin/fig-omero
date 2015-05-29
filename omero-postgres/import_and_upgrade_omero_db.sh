@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dump=`ls -1rt /pg_dump/*.pg_dump |tail -1`
+dump=`find /pg_dump -maxdepth 1 -name "*.pg_dump"|sort|tail -1`
 flag="/pg_dump_import_done"
 if [ ! -e $flag ]; then
 	gosu postgres postgres --single -jE <<-EOSQL
@@ -30,7 +30,7 @@ if [ ! -e $flag ]; then
 fi
 
 
-sqls=`ls -1 /psql/*.sql`
+sqls=`find /psql -maxdepth 1 -name "*.sql"`
 flag="/pg_omero_db_upgrade_done"
 if [ ! -e $flag ]; then
         echo "**UPGRADING DATABASE**"

@@ -1,0 +1,11 @@
+FROM {{ docker_owner }}/omero:{{ docker_tag }}
+
+VOLUME /initdb
+
+WORKDIR /home/omero
+ENV script create_initdb_script.sh
+COPY $script /home/omero/
+ 
+ENTRYPOINT /bin/sh -c
+CMD $script
+
