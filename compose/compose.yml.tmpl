@@ -1,0 +1,39 @@
+db:
+  image: {{ docker_owner }}/omero-postgres:{{ docker_tag }}
+  environment:
+    POSTGRES_PASSWORD:
+    DB_PASSWORD_OMERO:
+    OMERO_ROOT_PASSWORD:
+  volumes:
+   - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
+
+omero:
+  image: {{ docker_owner }}/omero-hyldap:{{ docker_tag }}
+  environment:
+    DB_PASSWORD_OMERO:
+    OMERO_TRUSTSTORE_PASSWORD:
+    LDAP_HOST: "ldap-internal.it.helsinki.fi"
+    LDAP_PORT: "636"
+  links:
+   - db
+  expose: 
+   - "4064"
+
+omeroweb:
+  image: {{ docker_owner }}/omero-web:{{ docker_tag }}
+  links:
+   - omero
+  expose:
+   - "4080"
+
+nginx:
+  image: {{ docker_owner }}/omero-nginx:{{ docker_tag }}
+  links:
+   - omeroweb
+  volumes_from:
+   - omeroweb
+  volumes:
+   - /home/hajaalin/tmp/fig-omero-test1/nginx_auth:/etc/nginx/auth
+  ports:
+   - "8080:80"
+   - "443:443"

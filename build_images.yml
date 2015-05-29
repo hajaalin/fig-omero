@@ -40,3 +40,7 @@
       state=build
     with_items: "{{ omero_components }}"
 
+  - name: template compose file
+    template:
+      src="compose/compose.yml.tmpl"
+      dest="compose/compose-{{ docker_tag }}.yml"
