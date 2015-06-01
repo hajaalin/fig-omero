@@ -1,6 +1,12 @@
 FROM {{ docker_owner }}/omero:{{ docker_tag }}
 
+USER root
+RUN mkdir /initdb \
+&& chown omero:omero /initdb
+
 VOLUME /initdb
+
+USER omero
 
 WORKDIR /home/omero
 ENV script create_initdb_script.sh

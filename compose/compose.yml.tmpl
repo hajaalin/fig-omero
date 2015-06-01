@@ -1,4 +1,4 @@
-omero-initdb:
+initdb:
   image: {{ docker_owner }}/omero-initdb:{{ docker_tag }}
   environment:
     OMERO_ROOT_PASSWORD:
@@ -12,7 +12,7 @@ db:
   volumes:
    - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
   volumes_from:
-   - omero-initdb
+   - initdb
 
 omero:
   image: {{ docker_owner }}/omero-hyldap:{{ docker_tag }}
