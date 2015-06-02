@@ -10,10 +10,14 @@ COPY set_config_hyldap.sh /set_config_hyldap.sh
 COPY create_truststore.sh /create_truststore.sh
 COPY hyldapConfig.xml /home/omero/hyldapConfig.xml
 COPY hyldap-5.1.1-328-f978880-ice35-b0.jar /opt/omero/lib/server/extensions.jar
-
-RUN chown omero:omero /*.sh 
+COPY logback.xml /opt/omero/etc/logback.xml
+RUN chown omero:omero /*.sh \
+&& chown omero:omero /home/omero/hyldapConfig.xml \
+&& chown omero:omero /opt/omero/lib/server/extensions.jar \
+&& chown omero:omero /opt/omero/etc/logback.xml
 
 USER omero
+
 RUN omero config set omero.security.trustStore $OMERO_TRUSTSTORE \
 && omero config set omero.ldap.config true \
 && omero config set omero.ldap.base dc=helsinki,dc=fi \
