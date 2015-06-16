@@ -5,7 +5,7 @@
   sudo: no
 
   vars:
-    docker_owner: "testing"
+    docker_owner: "hajaalin"
     omero_components:
       - omero-base
       - omero
@@ -14,7 +14,8 @@
       - omero-web
       - omero-nginx
       - omero-postgres
-      
+      - backup
+
   tasks:
   - name: read the current Git branch
     shell: git branch -v|grep "\*"|awk '{print $2}'
@@ -45,3 +46,4 @@
     template:
       src="compose/compose.yml.tmpl"
       dest="compose/compose-{{ docker_tag }}.yml"
+

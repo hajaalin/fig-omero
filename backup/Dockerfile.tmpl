@@ -1,0 +1,10 @@
+FROM hajaalin/backup-base
+
+RUN mkdir -p /root/Backup/models
+ADD config.rb /root/Backup/config.rb
+ADD models/my_backups.rb /root/Backup/models/my_backups.rb
+
+RUN mkdir -p /root/Whenever/config
+ADD schedule.rb /root/Whenever/config/schedule.rb
+RUN cd /root/Whenever ; whenever --write-crontab
+

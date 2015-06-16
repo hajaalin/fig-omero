@@ -14,6 +14,13 @@ db:
   volumes_from:
    - initdb
 
+backup:
+  image: {{ docker_owner }}/backup:{{ docker_tag }}
+  environment:
+    DB_PASSWORD_OMERO:
+  links:
+    - db  
+
 omero:
   image: {{ docker_owner }}/omero-hyldap:{{ docker_tag }}
   environment:
