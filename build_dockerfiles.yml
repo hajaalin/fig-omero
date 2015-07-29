@@ -1,0 +1,37 @@
+---
+# Playbook to build Dockerfiles for this project.
+
+- hosts: localhost
+  sudo: no
+
+  vars:
+    docker_owner: "hajaalin"
+    omero_components:
+      - omero-base
+      - omero
+      - omero-initdb
+      - omero-hyldap
+      - omero-web
+      - omero-nginx
+      - omero-postgres
+      - backup
+
+  tasks:
+  - name: read the current Git branch
+    shell: git branch -v|grep "\*"|awk '{print $2}'
+    register: git_branch
+
+  - name: read the current Git commit
+    shell: git log |head -1|awk '{print $2}'
+    register: git_commit
+
+  - set_fact: docker_tag="{{ git_branch.stdout }}-{{ git_commit.stdout }}"
+  - debug: var=docker_tag
+
+  - name: template Dockerfiles
+    template: 
+      src="{{ item }}/Dockerfile.tmpl"
+      dest="{{ item }}/Dockerfile"
+    with_items: "{{ omero_components }}"
+
+
