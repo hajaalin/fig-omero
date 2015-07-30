@@ -25,3 +25,5 @@ RUN omero config set omero.security.trustStore $OMERO_TRUSTSTORE \
 && omero config set omero.ldap.new_user_group ':bean:hyldapbean' \
 && omero config set omero.ldap.sync_on_login false \
 && echo "hyldap.config=/home/omero/hyldapConfig.xml" >> /opt/omero/etc/omero.properties
+
+RUN echo "dummy change" > /home/omero/dummychange
