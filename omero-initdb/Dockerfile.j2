@@ -1,5 +1,9 @@
 FROM {{ docker_owner }}/omero:{{ docker_tag }}
 
+# This image is used to create a init script for OMERO database.
+# The script is run by a "omero-postgres" container, if no dump
+# of an old database is found.
+
 USER root
 RUN mkdir /initdb \
 && chown omero:omero /initdb
@@ -10,6 +14,5 @@ USER omero
 
 ENV script create_initdb_script.sh
 COPY $script /home/omero/
- 
-ENTRYPOINT /home/omero/$script
 
+ENTRYPOINT /home/omero/$script

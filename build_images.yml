@@ -15,6 +15,7 @@
       - omero-nginx
       - omero-postgres
       - backup
+    volume_pg_dump: "/home/hajaalin/tmp/pg_dump"
 
   tasks:
   - name: read the current Git branch
@@ -25,25 +26,25 @@
     shell: git log |head -1|awk '{print $2}'
     register: git_commit
 
-  - set_fact: docker_tag="{{ git_branch.stdout }}-{{ git_commit.stdout }}"
+#  - set_fact: docker_tag="{{ git_branch.stdout }}-{{ git_commit.stdout }}"
+  - set_fact: docker_tag="DEV"
   - debug: var=docker_tag
 
   - name: template Dockerfiles
-    template: 
-      src="{{ item }}/Dockerfile.tmpl"
+    template:
+      src="{{ item }}/Dockerfile.j2"
       dest="{{ item }}/Dockerfile"
     with_items: "{{ omero_components }}"
 
   - name: build images
-    docker_image: 
-      path="./{{ item }}" 
-      name="{{ docker_owner }}/{{ item }}" 
+    docker_image:
+      path="./{{ item }}"
+      name="{{ docker_owner }}/{{ item }}"
       tag="{{ docker_tag }}"
       state=build
     with_items: "{{ omero_components }}"
 
   - name: template compose file
     template:
-      src="compose/compose.yml.tmpl"
+      src="compose/compose.yml.j2"
       dest="compose/compose-{{ docker_tag }}.yml"
-

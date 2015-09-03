@@ -10,7 +10,7 @@ db:
     DB_PASSWORD_OMERO:
     OMERO_ROOT_PASSWORD:
   volumes:
-   - /home/hajaalin/tmp/pg_dump:/pg_dump:ro
+   - {{ volume_pg_dump }}:/pg_dump:ro
   volumes_from:
    - initdb
 
@@ -19,10 +19,11 @@ backup:
   environment:
     DB_PASSWORD_OMERO:
   links:
-    - db  
+    - db
 
 omero:
   image: {{ docker_owner }}/omero-hyldap:{{ docker_tag }}
+#  image: {{ docker_owner }}/omero:{{ docker_tag }}
   environment:
     DB_PASSWORD_OMERO:
     OMERO_TRUSTSTORE_PASSWORD:
@@ -30,7 +31,7 @@ omero:
     LDAP_PORT: "636"
   links:
    - db
-  expose: 
+  expose:
    - "4064"
 
 omeroweb:
@@ -49,5 +50,5 @@ nginx:
   volumes:
    - /home/hajaalin/tmp/fig-omero-test1/nginx_auth:/etc/nginx/auth
   ports:
-   - "8080:80"
-   - "443:443"
+   - "8090:80"
+   - "4430:443"

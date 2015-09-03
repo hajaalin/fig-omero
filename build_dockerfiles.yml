@@ -29,9 +29,7 @@
   - debug: var=docker_tag
 
   - name: template Dockerfiles
-    template: 
-      src="{{ item }}/Dockerfile.tmpl"
+    template:
+      src="{{ item }}/Dockerfile.j2"
       dest="{{ item }}/Dockerfile"
     with_items: "{{ omero_components }}"
-
-

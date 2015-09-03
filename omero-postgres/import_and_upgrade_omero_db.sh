@@ -2,7 +2,7 @@
 
 flag="/database_initialized"
 if [ ! -e $flag ]; then
-	# 
+	#
 	# Create a new database and user for OMERO.
 	# This is needed both for a fresh database and before importing a database dump.
 	#
@@ -67,11 +67,11 @@ EOF
 		echo "**OMERO ROOT PASSWORD SET***"
 		kill $PID
 		sleep 10
-	
+
 
 	#
 	# No database dump file provided, create a fresh OMERO database.
-	# 
+	#
 	else
 		sql=`find /initdb -maxdepth 1 -name "*.sql"|head -1`
 		ls -lart /initdb
@@ -87,13 +87,14 @@ EOF
 	fi
 
 
-	# 
+	#
 	# Allow access to the database.
 	#
 	echo "host omero omero 0.0.0.0/0 md5" >> "$PGDATA"/pg_hba.conf
 
 
 	touch $flag
-		
+
 fi
 
+echo omero-postgres: import_and_upgrade_omero_db.sh exiting...

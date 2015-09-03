@@ -1,12 +1,16 @@
 FROM {{ docker_owner }}/omero-base:{{ docker_tag }}
 
-ENV BRANCH OMERO-5.1.3
+# invalidate cache
+ENV version 5.1.3
+ENV BRANCH OMERO-5.1-latest
 
 RUN cd /tmp \
-&& /home/omero/venv/bin/omego download server --branch=$BRANCH --labels ICE=3.5
+&& wget http://downloads.openmicroscopy.org/latest/omero5.1/server-ice35.zip \
+&& unzip server-ice35.zip
+#&& /home/omero/venv/bin/omego download server --branch=$BRANCH --labels ICE=3.5
 
 RUN cd /tmp \
-&& rm OMERO.server*zip \
+#&& rm OMERO.server*zip \
 && chown -R omero:omero OMERO.server* \
 && mv OMERO.server* /opt/ \
 && ln -s /opt/OMERO.server* /opt/omero \
@@ -45,4 +49,3 @@ WORKDIR /opt/omero
 #"--deploy /opt/omero/etc/grid/default.xml"]
 
 ENTRYPOINT /start_omero.sh
-

@@ -2,7 +2,7 @@ Deploy OMERO with Docker and Fig.
 
 Prerequisites:
 - install Docker (https://docs.docker.com/)
-- install Fig (http://www.fig.sh/install.html)
+- install Docker Compose (https://docs.docker.com/compose/install/)
 - install ejson (https://github.com/Shopify/ejson)
 - install jq (http://stedolan.github.io/jq/)
 
@@ -11,9 +11,7 @@ Configuration:
 - copy database dump to directory mapped in fig.yml
 
 Launch:
-source make_env.sh
-fig up
-
+./run.sh
 
 TODO:
 - use data-only containers
@@ -22,7 +20,6 @@ TODO:
 - understanding OMERO.FS:n
 
 TODO DEPLOYMENT
-- new VM from CSC, Ubuntu 14
 - mounting current data on new VM
 
 
