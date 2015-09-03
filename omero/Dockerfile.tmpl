@@ -1,6 +1,6 @@
 FROM {{ docker_owner }}/omero-base:{{ docker_tag }}
 
-ENV BRANCH OMERO-5.1-latest
+ENV BRANCH OMERO-5.1.3
 
 RUN cd /tmp \
 && /home/omero/venv/bin/omego download server --branch=$BRANCH --labels ICE=3.5
