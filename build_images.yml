@@ -5,6 +5,7 @@
   sudo: no
 
   vars:
+    dev: false
     docker_owner: "hajaalin"
     omero_components:
       - omero-base
@@ -26,8 +27,12 @@
     shell: git log |head -1|awk '{print $2}'
     register: git_commit
 
-#  - set_fact: docker_tag="{{ git_branch.stdout }}-{{ git_commit.stdout }}"
-  - set_fact: docker_tag="DEV"
+  - set_fact: docker_tag="{{ git_branch.stdout }}-{{ git_commit.stdout }}"
+
+  - name: tag images as "DEV" in dev environment
+    set_fact: docker_tag="DEV"
+    when: dev
+
   - debug: var=docker_tag
 
   - name: template Dockerfiles
