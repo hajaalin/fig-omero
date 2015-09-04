@@ -9,7 +9,7 @@ ENV OMERO_TRUSTSTORE /home/omero/truststore.jks
 COPY set_config_hyldap.sh /set_config_hyldap.sh
 COPY create_truststore.sh /create_truststore.sh
 COPY hyldapConfig.xml /home/omero/hyldapConfig.xml
-COPY hyldap-5.1.1-328-f978880-ice35-b0.jar /opt/omero/lib/server/extensions.jar
+COPY hyldap-5.2.0-m0-530-0aef328-ice35-b0.jar /opt/omero/lib/server/extensions.jar
 COPY logback.xml /opt/omero/etc/logback.xml
 RUN chown omero:omero /*.sh \
 && chown omero:omero /home/omero/hyldapConfig.xml \
