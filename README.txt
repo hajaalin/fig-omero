@@ -7,12 +7,12 @@ in a separate repository (https://github.com/hajaalin/fig-omero-deploy).
 Prerequisites:
 - install Docker (https://docs.docker.com/)
 - install Docker Compose (https://docs.docker.com/compose/install/)
-~~- install ejson (https://github.com/Shopify/ejson)~~
-~~- install jq (http://stedolan.github.io/jq/)~~
+<del>- install ejson (https://github.com/Shopify/ejson)</del>
+<del>- install jq (http://stedolan.github.io/jq/)</del>
 
 Configuration:
-~~- copy private key corresponding to secrets.ejson to /opt/ejson/keys~~
-~~- copy database dump to directory mapped in fig.yml~~
+<del>- copy private key corresponding to secrets.ejson to /opt/ejson/keys</del>
+<del>- copy database dump to directory mapped in fig.yml</del>
 
 Launch:
 ./run.sh
